@@ -11,3 +11,14 @@ export async function requestPhoto(name, page) {
     alert('Something going wrong');
   }
 }
+
+export function normalizeImages(data) {
+  return data.hits.map(n => {
+    const neededData = {
+      id: n.id,
+      webformatURL: n.webformatURL,
+      largeImageURL: n.largeImageURL,
+    };
+    return neededData;
+  });
+}

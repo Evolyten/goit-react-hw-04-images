@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { Wrap, BackDrop, Img } from './ModalStyled';
 
-export function Modal(currentImg, closeModal) {
+export function Modal({ currentImg, onCloseModal }) {
   const addKeyListener = e => {
     if (e.code === 'Escape') {
       this.props.closeModal();
@@ -15,16 +15,9 @@ export function Modal(currentImg, closeModal) {
 
     return window.removeEventListener('keydown', addKeyListener);
   }, []);
-  // componentDidMount() {
-
-  // }
-
-  // componentWillUnmount() {
-
-  // }
 
   return (
-    <BackDrop onClick={closeModal}>
+    <BackDrop onClick={onCloseModal}>
       <Wrap>
         <Img src={currentImg.largeImageURL} alt="" />
       </Wrap>
