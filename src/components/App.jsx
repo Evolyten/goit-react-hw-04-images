@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { SearchBar } from './Searchbar/Searchbar';
 import { ImageGalleryList } from './ImageGallery/ImageGallery';
 import { requestPhoto } from 'components/service/APIService';
