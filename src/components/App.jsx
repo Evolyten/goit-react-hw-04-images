@@ -44,8 +44,14 @@ export function App() {
       toast.error('No matches for this query.');
       setStatus(listStatus.reject);
     } else {
-      setUserImages(prevState => [...prevState, ...filteredData]);
-      setStatus(listStatus.resolved);
+      if (page !== 1) {
+        setUserImages(prevState => [...prevState, ...filteredData]);
+        setStatus(listStatus.resolved);
+      } else {
+        setUserImages(filteredData);
+
+        setStatus(listStatus.resolved);
+      }
     }
     if (page === totalPage) {
       toast.error('This is last page.');
