@@ -3,18 +3,19 @@ import PropTypes from 'prop-types';
 
 import { Wrap, BackDrop, Img } from './ModalStyled';
 
-export function Modal({ currentImg, onCloseModal }) {
-  const addKeyListener = e => {
-    if (e.code === 'Escape') {
-      this.props.closeModal();
-    }
-  };
-
+export default function Modal({ currentImg, onCloseModal }) {
   useEffect(() => {
-    window.addEventListener('keydown', addKeyListener);
+    const handleEsc = e => {
+      if (e.code === 'Escape') {
+        onCloseModal();
+      }
+    };
+    window.addEventListener('keydown', handleEsc);
 
-    return window.removeEventListener('keydown', addKeyListener);
-  }, []);
+    return () => {
+      window.removeEventListener('keydown', handleEsc);
+    };
+  }, [onCloseModal]);
 
   return (
     <BackDrop onClick={onCloseModal}>

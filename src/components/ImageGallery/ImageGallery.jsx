@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { ImageGalleryItem } from 'components/ImageGalleryItem/ImageGalleryItem';
+import ImageGalleryItem from 'components/ImageGalleryItem/ImageGalleryItem';
 import { ImageList } from './ImageGaleryStyled';
 
-export function ImageGalleryList({ userImage, userClickModal }) {
+export default function ImageGalleryList({ userImage, userClickModal }) {
   return (
     <ImageList>
       {userImage.map(img => (

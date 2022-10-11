@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { SearchBar } from './Searchbar/Searchbar';
-import { ImageGalleryList } from './ImageGallery/ImageGallery';
+import SearchBar from './Searchbar/Searchbar';
+import ImageGalleryList from './ImageGallery/ImageGallery';
 import { requestPhoto, normalizeImages } from 'components/service/APIService';
-import { Modal } from './Modal/Modal';
-import { Button } from './Button/Button';
-import { Loader } from './Loader/Loader';
+import Modal from './Modal/Modal';
+import Button from './Button/Button';
+import Loader from './Loader/Loader';
 import toast, { Toaster } from 'react-hot-toast';
 const listStatus = {
   idle: 'IDLE',
@@ -29,27 +29,27 @@ export function App() {
     if (filteredData.length === 0) {
       toast.error('No matches for this query.');
       setStatus(listStatus.reject);
+      return;
+    }
+
+    if (page !== 1) {
+      setUserImages(prevState => [...prevState, ...filteredData]);
+      setStatus(listStatus.resolved);
     } else {
-      if (page !== 1) {
-        setUserImages(prevState => [...prevState, ...filteredData]);
-        setStatus(listStatus.resolved);
-      } else {
-        setUserImages(filteredData);
-        setStatus(listStatus.resolved);
-      }
+      setUserImages(filteredData);
+      setStatus(listStatus.resolved);
     }
 
     if (page === totalPage) {
       setStatus(listStatus.reject);
+      return;
     }
   };
 
   useEffect(() => {
-    if (userRequest === '') {
-      return;
-    } else {
-      addUserImagesToState(userRequest, page);
-    }
+    if (!userRequest) return;
+
+    addUserImagesToState(userRequest, page);
   }, [page, userRequest]);
 
   useEffect(() => {
@@ -59,6 +59,7 @@ export function App() {
 
   const userRequestImages = value => {
     setUserRequest(value);
+    setPage(1);
   };
 
   const nextImagesPage = () => {

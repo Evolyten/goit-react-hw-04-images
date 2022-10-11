@@ -2,7 +2,7 @@ import React from 'react';
 import { Header } from './Searchbar.module';
 import toast from 'react-hot-toast';
 
-export const SearchBar = ({ submitForm }) => {
+export default function SearchBar({ submitForm }) {
   function takeDataFromForm(e) {
     e.preventDefault();
     const name = e.target.elements.name.value.trim();
@@ -29,4 +29,4 @@ export const SearchBar = ({ submitForm }) => {
       </form>
     </Header>
   );
-};
+}

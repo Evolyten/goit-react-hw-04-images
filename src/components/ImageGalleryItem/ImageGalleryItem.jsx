@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Img, Item } from './ImageGalleryItemStyled';
 
-export const ImageGalleryItem = ({ userData, userPick }) => {
+export default function ImageGalleryItem({ userData, userPick }) {
   return (
     <Item>
       <Img
@@ -12,7 +12,7 @@ export const ImageGalleryItem = ({ userData, userPick }) => {
       />
     </Item>
   );
-};
+}
 
 ImageGalleryItem.propTypes = {
   userData: PropTypes.object,
