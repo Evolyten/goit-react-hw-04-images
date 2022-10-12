@@ -52,11 +52,6 @@ export function App() {
     addUserImagesToState(userRequest, page);
   }, [page, userRequest]);
 
-  useEffect(() => {
-    setUserImages([]);
-    setPage(1);
-  }, [userRequest]);
-
   const userRequestImages = value => {
     setUserRequest(value);
     setPage(1);
